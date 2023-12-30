@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const departmentSchema = new Schema({
   id: {
-    type: Schema.Types.UUID,
+    type: String,
     required: true,
   },
   name: {

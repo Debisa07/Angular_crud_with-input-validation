@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const employeeSchema = new Schema({
   id: {
-    type: Schema.Types.UUID,
+    type: String,
     required: true,
   },
   firstName: {
