@@ -1,6 +1,6 @@
 import { ExtraOptions, PreloadAllModules, Routes } from '@angular/router';
 // import { FlightListComponent } from './flight-list/flight-list.component';
-import { DepartmentEditComponent } from './home/department-edit/department-edit.component';
+import { DepartmentListComponent } from './home/flight-list/flight-list.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -8,10 +8,14 @@ export const APP_ROUTES: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'department/:id',
-    component: DepartmentEditComponent
+   {
+    path: 'department',
+    component: DepartmentListComponent
   },
+  // {
+  //   path: 'department/:id',
+  //   component: DepartmentEditComponent
+  // },
   {
     path: '**',
     redirectTo: 'home'

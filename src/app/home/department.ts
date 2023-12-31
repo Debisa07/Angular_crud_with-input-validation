@@ -1,8 +1,8 @@
 export class Department {
     _id!: string;
+    id!: string;
     name!: string;
-    createdAt!: Date;
-    updatedAt!: Date;
-    deletedAt!: Date;
-  }
-  
+    createdAt!: string;
+    updatedAt!: string;
+    deletedAt!: string;
+}

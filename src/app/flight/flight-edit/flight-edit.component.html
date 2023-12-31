@@ -10,73 +10,101 @@
   </div>
   <div class="content">
     <div *ngIf="feedback.length" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
-    <form *ngIf="flight" #editForm="ngForm" (ngSubmit)="save()">
+    <form *ngIf="flight" #editForm="ngForm" (ngSubmit)="save()" class="row">
 
-      <div class="form-group">
-        <label for="firstName">FirstName</label>
-        <input [(ngModel)]="flight.firstName" id="firstName" name="firstName" class="form-control">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstName">FirstName</label>
+          <input [(ngModel)]="flight.firstName" id="firstName" name="firstName" class="form-control" required pattern="[A-Za-z]+" placeholder="Enter first name">
+          <div *ngIf="editForm.controls['firstName'].invalid && (editForm.controls['firstName'].dirty || editForm.controls['firstName'].touched)" class="alert alert-danger">
+            First Name is required and should contain only characters.
+          </div>
+          
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">LastName</label>
+          <input [(ngModel)]="flight.lastName" id="lastName" name="lastName" class="form-control" required pattern="[A-Za-z]+" placeholder="Enter last name">
+          <div *ngIf="editForm.controls['lastName'].invalid && (editForm.controls['lastName'].dirty || editForm.controls['lastName'].touched)" class="alert alert-danger">
+            Last Name is required and should contain only characters.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="id">Employee Id</label>
+          <input [(ngModel)]="flight.id" id="id" name="id" class="form-control" required placeholder="Enter employee ID">
+          <div *ngIf="editForm.controls['id'].invalid && (editForm.controls['id'].dirty || editForm.controls['id'].touched)" class="alert alert-danger">
+            Employee ID is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="number">number</label>
+          <input [(ngModel)]="flight.number" id="number" name="number" class="form-control" required placeholder="Enter number">
+          <div *ngIf="editForm.controls['number'].invalid && (editForm.controls['number'].dirty || editForm.controls['number'].touched)" class="alert alert-danger">
+            Number is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">address</label>
+          <input [(ngModel)]="flight.address" id="address" name="address" class="form-control" required placeholder="Enter address">
+          <div *ngIf="editForm.controls['address'].invalid && (editForm.controls['address'].dirty || editForm.controls['address'].touched)" class="alert alert-danger">
+            Address is required.
+          </div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="lastName">LastName</label>
-        <input [(ngModel)]="flight.lastName" id="lastName" name="lastName" class="form-control">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="country">country</label>
+          <input [(ngModel)]="flight.country" id="country" name="country" class="form-control" placeholder="Enter country">
+        </div>
+
+        <div class="form-group">
+          <label for="city">city</label>
+          <input [(ngModel)]="flight.city" id="city" name="city" class="form-control" placeholder="Enter city">
+        </div>
+
+        <div class="form-group">
+          <label for="state">state</label>
+          <input [(ngModel)]="flight.state" id="state" name="state" class="form-control" placeholder="Enter state">
+        </div>
+
+        <div class="form-group">
+          <label for="dependant">dependant</label>
+          <select [(ngModel)]="flight.dependant" id="dependant" name="dependant" class="form-control">
+            <option value="">Select Dependant</option>
+            <option value="married">married</option>
+            <option value="unmarried">unmarried</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input [(ngModel)]="flight.password" id="password" name="password" class="form-control" required minlength="8" placeholder="Enter password">
+          <div *ngIf="editForm.controls['password'].invalid && (editForm.controls['password'].dirty || editForm.controls['password'].touched)" class="alert alert-danger">
+            Password is required and should be at least 8 characters long.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="department">department</label>
+          <select [(ngModel)]="flight.department" id="department" name="department" class="form-control">
+            <option value="">Select Department</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+            <option value="IT">IT</option>
+            <option value="Marketing">Marketing</option>
+          </select>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="id">Employee Id</label>
-        <input [(ngModel)]="flight.id" id="id" name="id" class="form-control">
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
       </div>
 
-      <div class="form-group">
-        <label for="number">number</label>
-        <input [(ngModel)]="flight.number" id="number" name="number" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="address">address</label>
-        <input [(ngModel)]="flight.address" id="address" name="address" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="country">country</label>
-        <input [(ngModel)]="flight.country" id="country" name="country" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="city">city</label>
-        <input [(ngModel)]="flight.city" id="city" name="city" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="state">state</label>
-        <input [(ngModel)]="flight.state" id="state" name="state" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="dependant">dependant</label>
-        <input [(ngModel)]="flight.dependant" id="dependant" name="dependant" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="password">password</label>
-        <input [(ngModel)]="flight.password" id="password" name="password" class="form-control">
-      </div>
-
-
-      <div class="form-group">
-        <label for="repassword">RE password</label>
-        <input [(ngModel)]="flight.password" id="repassword" name="repassword" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="department">department</label>
-        <input [(ngModel)]="flight.department" id="department" name="department" class="form-control">
-      </div>
-
-      <!-- [disabled]="!editForm.form.valid" -->
-
-      <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
     </form>
   </div>
 </div>
