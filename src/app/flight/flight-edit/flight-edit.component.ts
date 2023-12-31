@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FlightService } from '../flight.service';
-import { Flight } from '../flight';
 import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Employee } from '../employee';
+import { Department } from '../../home/department';
 
 @Component({
   selector: 'app-flight-edit',
@@ -15,12 +15,19 @@ export class FlightEditComponent implements OnInit {
 
   id!: string;
   flight!: Employee;
+  department!: Department;
   feedback: any = {};
+
+  get departmentList(): Department[] {
+    return this.flightService.departmentList;
+  }
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private flightService: FlightService) {
+   this.flightService.loaddepartment();
+    // console.log({ editdepartment });
   }
 
   ngOnInit() {

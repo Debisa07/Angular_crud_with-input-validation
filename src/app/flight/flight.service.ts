@@ -1,4 +1,4 @@
-import { Flight } from './flight';
+import { Department } from '../home/department';
 import { Employee } from './employee';
 import { FlightFilter } from './flight-filter';
 import { Injectable } from '@angular/core';
@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 @Injectable()
 export class FlightService {
   flightList: Employee[] = [];
+  departmentList: Department[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -93,6 +94,41 @@ export class FlightService {
       return this.http.delete<Employee>(url, { headers, params });
     }
     return EMPTY;
+  }
+
+  loaddepartment(): void {
+    this.finddepartment().subscribe(result => {
+      this.departmentList = result;
+    },
+      err => {
+        console.error('error loading', err);
+      }
+    );
+  }  
+
+  finddepartment(): Observable<Department[]> {
+    const url = `http://localhost:5000/departments`;
+
+    console.log("findddinggggg");
+
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+    const params = {
+
+    };
+    const resp = this.http.get<Department[]>(url, { params, headers }).subscribe(
+      result => {
+        console.log({ result });
+        return result;
+      },
+      err => {
+        console.error('error loading', err);
+      }
+    );
+
+    console.log({ resp });
+
+
+    return this.http.get<Department[]>(url, { params, headers });
   }
 
 }
