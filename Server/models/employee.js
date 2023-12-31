@@ -42,7 +42,11 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
-  department: { type: Schema.Types.ObjectId, ref: "department" },
+  department: {
+    type: String,
+    required: true,
+  },
+  // { type: Schema.Types.ObjectId, ref: "department" },
   createdAt: {
     type: Date,
     default: Date.now,
